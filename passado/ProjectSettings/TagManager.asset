@@ -11,6 +11,7 @@ TagManager:
   - direcao
   - direcao es
   - chao
+  - ativar
   layers:
   - Default
   - TransparentFX
