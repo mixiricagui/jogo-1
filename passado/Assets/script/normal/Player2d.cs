@@ -25,6 +25,15 @@ public class Player2d : MonoBehaviour
 
     public static Player2d abc;
     ///////------VARIAVEIS PRIVADAS----//////
+    [SerializeField]
+    private GameObject bauF;
+    [SerializeField]
+    private GameObject bauA;
+    [SerializeField]
+    private Collider2D box;
+    [SerializeField]
+    private GameObject textoBau;
+
     private Animator anin;
     private Rigidbody2D rb;
 
@@ -48,6 +57,8 @@ public class Player2d : MonoBehaviour
         Pulo();
 
         Pause();
+
+        Bau();
 
         //GameControle.instance.Pause();
 
@@ -107,10 +118,21 @@ public class Player2d : MonoBehaviour
         
     }
 
+    void Bau()
+    {
+        if (box.gameObject.CompareTag("ativar") && Input.GetButtonDown("interagir"))
+        {
+            bauA.SetActive(true);
+            bauF.SetActive(false);
+        }
+    }
+
     ///////------COLISAOES----//////
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        //////////------PULO-------/////////
+
         if (collision.gameObject.layer == 6)
         {
             ispulo = false;
@@ -121,13 +143,24 @@ public class Player2d : MonoBehaviour
             anin.SetBool("pulo", true);
         }
 
+        //////////------TERMIU DE FASE-------/////////
+
         if (collision.gameObject.layer == 10)
         {
             finalfase.gameObject.SetActive(true);
         }
 
+        //////////------BAU-------/////////
+        
+        if (collision.gameObject.CompareTag("ativar"))
+        {
+            textoBau.SetActive(true);
+        }
+        else
+        {
+            textoBau.SetActive(false);
+        }
     }
-
 
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -138,6 +171,10 @@ public class Player2d : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
     ///////------PUBLICAS----//////
     public void dano()
     {
