@@ -103,7 +103,7 @@ public class playerplataform2d : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             ispulo = false;
-            anin.SetBool("pular", false);
+            //anin.SetBool("pular", false);
         }
 
         if (collision.gameObject.tag == "atacks")

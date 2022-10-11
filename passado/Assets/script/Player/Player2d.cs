@@ -52,13 +52,15 @@ public class Player2d : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Atack();
+        
+
+        //Atack();
         Move();
         Pulo();
 
         Pause();
 
-        Bau();
+       
 
         //GameControle.instance.Pause();
 
@@ -92,21 +94,29 @@ public class Player2d : MonoBehaviour
         if (Input.GetButtonDown("Jump") && ispulo == false)
         {
             rb.AddForce(new Vector2(0f, pulo), ForceMode2D.Impulse);
-            anin.SetBool("pular", true);
+            //anin.SetBool("pula", true);
         }
     }
 
-    void Atack()
-    {
+   void Atack()
+   {
+        // if (Input.GetButton("atak"))
+        // {
+        //     anin.SetBool("atirando", true);
+        // }
+        // else
+        // {
+        // anin.SetBool("atirando", false);
+        // }
+
         if (Input.GetButton("atak"))
         {
-            anin.SetBool("atirando", true);
+            bauA.SetActive(true);
+            bauF.SetActive(false);
+
+            Debug.Log("hiudf");
         }
-        else
-        {
-            anin.SetBool("atirando", false);
-        }
-    }
+   }
 
 
     void Pause()
@@ -116,15 +126,6 @@ public class Player2d : MonoBehaviour
             pause.SetActive(true);
         }
         
-    }
-
-    void Bau()
-    {
-        if (box.gameObject.CompareTag("ativar") && Input.GetButtonDown("interagir"))
-        {
-            bauA.SetActive(true);
-            bauF.SetActive(false);
-        }
     }
 
     ///////------COLISAOES----//////
@@ -143,7 +144,7 @@ public class Player2d : MonoBehaviour
             anin.SetBool("pulo", true);
         }
 
-        //////////------TERMIU DE FASE-------/////////
+        //////////------TERMINO DE FASE-------/////////
 
         if (collision.gameObject.layer == 10)
         {
@@ -171,10 +172,7 @@ public class Player2d : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+    
     ///////------PUBLICAS----//////
     public void dano()
     {
